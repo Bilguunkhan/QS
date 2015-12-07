@@ -153,6 +153,7 @@ public class QS extends JFrame {
          try {
             while (true) {
                movePlayer();
+			   gamePanel.updateScore();
                Thread.sleep(15);
             }
          }
@@ -512,17 +513,13 @@ public class QS extends JFrame {
       }
 	  
 	  //Update Score and Highscore
-	  public static int updateScore(){
-		  for(int i=0; i<10000; i+=2){
-			  Score += i;
-			  return Score;
-		  }
-		   
+	  public static void updateScore(){
+			Score+=2;
 		   if (Score>HighScore){
 			   HighScore = Score;
-			   
 		   }
-		   return HighScore;
+		   
+		   gamePanel.repaintGamePanel();
 	   }
 
       // Repaint game panel
@@ -551,7 +548,6 @@ public class QS extends JFrame {
 
    public static void main(String[] args) { 
       frame.setTitle("Questionable Substances");
-	  updateScore();
       gamePanelHousekeeping();
       frame.add(gamePanel);  
       frame.pack();
